@@ -38,6 +38,7 @@ group :development, :test, :production do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'faraday'
+  gem 'bcrypt'
 end
 
 group :development, :test do
