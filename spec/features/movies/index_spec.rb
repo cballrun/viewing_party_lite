@@ -3,7 +3,7 @@ require 'date'
 
 RSpec.describe 'the User Movie Index Page', :vcr do
 
-  let!(:user1) { create(:user, id: 5, name: "Jim Lahey", email: "supervisor@sunnyvale.ca") }
+  let!(:user1) { create(:user, id: 5, name: "Jim Lahey", email: "supervisor@sunnyvale.ca", password: "password") }
 
   before :each do
       visit "/users/#{user1.id}/discover"

@@ -5,7 +5,7 @@ RSpec.describe 'the New Party Page' do
   describe 'party creation' do
     it 'has a form to create a new party' do
       VCR.use_cassette("new_party", :allow_playback_repeats => true) do
-        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
+        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
         visit "/users/#{user.id}/movies/550/viewing-party/new"
         expect(page).to have_content('Create a Movie Party for Fight Club')
         expect(find('.new-party')).to have_content('Day')
@@ -18,7 +18,7 @@ RSpec.describe 'the New Party Page' do
 
     it 'the form creates a new party' do
       VCR.use_cassette("new_party", :allow_playback_repeats => true) do
-        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
+        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
         visit "/users/#{user.id}/movies/550/viewing-party/new"
     
         fill_in "Day", with: Date.today
@@ -37,10 +37,10 @@ RSpec.describe 'the New Party Page' do
   describe 'UserParty creation' do
     it 'creates new user parties for all invited users when the form is submitted' do
       VCR.use_cassette("new_party", :allow_playback_repeats => true) do
-        host = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
-        guest_1 = create(:user, id: 51, name: "Julian", email: "julian@sunnyvale.ca")
-        guest_2 = create(:user, id: 53, name: "Jim Lahey", email: "supervisor@sunnyvale.ca")
-        guest_3 = create(:user, id: 54, name: "Ricky", email: "ricky@sunnyvale.ca")
+        host = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
+        guest_1 = create(:user, id: 51, name: "Julian", email: "julian@sunnyvale.ca", password: "password")
+        guest_2 = create(:user, id: 53, name: "Jim Lahey", email: "supervisor@sunnyvale.ca", password: "password")
+        guest_3 = create(:user, id: 54, name: "Ricky", email: "ricky@sunnyvale.ca", password: "password")
         visit "/users/#{host.id}/movies/550/viewing-party/new"
         
         fill_in "Day", with: Date.today
@@ -63,10 +63,10 @@ RSpec.describe 'the New Party Page' do
 
     it 'adds the new user parties to the user dashboards and redirects to host dashboard' do
       VCR.use_cassette("new_party", :allow_playback_repeats => true) do
-        host = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
-        guest_1 = create(:user, id: 51, name: "Julian", email: "julian@sunnyvale.ca")
-        guest_2 = create(:user, id: 53, name: "Jim Lahey", email: "supervisor@sunnyvale.ca")
-        guest_3 = create(:user, id: 54, name: "Ricky", email: "ricky@sunnyvale.ca")
+        host = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
+        guest_1 = create(:user, id: 51, name: "Julian", email: "julian@sunnyvale.ca", password: "password")
+        guest_2 = create(:user, id: 53, name: "Jim Lahey", email: "supervisor@sunnyvale.ca", password: "password")
+        guest_3 = create(:user, id: 54, name: "Ricky", email: "ricky@sunnyvale.ca", password: "password")
         visit "/users/#{host.id}/movies/550/viewing-party/new"
         
         fill_in "Day", with: Date.today

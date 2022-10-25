@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'When I visit the landing page', type: :feature do
-  let!(:erin) { User.create!(name: 'Erin', email: 'epintozzi@turing.edu') }
-  let!(:mike) { User.create!(name: 'Mike', email: 'mike@turing.edu') }
-  let!(:meg) { User.create!(name: 'Meg', email: 'mstang@turing.edu') }
+  let!(:erin) { User.create!(name: 'Erin', email: 'epintozzi@turing.edu', password: "password") }
+  let!(:mike) { User.create!(name: 'Mike', email: 'mike@turing.edu', password: "password") }
+  let!(:meg) { User.create!(name: 'Meg', email: 'mstang@turing.edu', password: "password") }
   before(:each) {visit '/'}
 
   describe ' the header content' do
@@ -44,7 +44,7 @@ RSpec.describe 'When I visit the landing page', type: :feature do
           expect(page).to_not have_content("generic_email@gmail.com's Dashboard")
         end
 
-        User.create!(name: 'Nobody', email: 'generic_email@gmail.com')
+        User.create!(name: 'Nobody', email: 'generic_email@gmail.com', password: "password")
         refresh
 
         within '#user-list' do
