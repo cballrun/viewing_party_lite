@@ -6,7 +6,7 @@ RSpec.describe 'the user movie show page', type: :feature do
   describe 'movie details section' do
     it 'shows the movies details' do
       VCR.use_cassette("user_movies_show", :allow_playback_repeats => true) do
-        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
+        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
         visit "/users/#{user.id}/movies/550"
         within("#movie_details") do
           expect(page).to have_content("Vote Average: 8.433")
@@ -21,7 +21,7 @@ RSpec.describe 'the user movie show page', type: :feature do
   describe 'the cast section' do
     it 'shows the first 10 cast members character and name' do
       VCR.use_cassette("user_movies_show_cast", :allow_playback_repeats => true) do
-        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
+        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
         visit "/users/#{user.id}/movies/550"
         within("#cast_info") do
           expect(page).to have_content(" as ", count: 10)
@@ -35,7 +35,7 @@ RSpec.describe 'the user movie show page', type: :feature do
   describe 'the reviews section' do
     it 'shows the first 10 cast members character and name' do
       VCR.use_cassette("user_movies_show_reviews", :allow_playback_repeats => true) do
-        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
+        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
         visit "/users/#{user.id}/movies/550"
         within("#reviews_info") do
           expect(page).to have_content("Author:", count: 7)
@@ -49,7 +49,7 @@ RSpec.describe 'the user movie show page', type: :feature do
   describe 'the buttons section' do
     it 'has a button to return to the discover page' do
       VCR.use_cassette("user_movies_show_buttons", :allow_playback_repeats => true) do
-        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
+        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
         visit "/users/#{user.id}/movies/550"
         within("#buttons") do
           expect(page).to have_selector("#discover_button")
@@ -62,7 +62,7 @@ RSpec.describe 'the user movie show page', type: :feature do
 
     it 'has a button to go to the create a new viewing party page' do
       VCR.use_cassette("user_movies_show_buttons", :allow_playback_repeats => true) do
-        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca")
+        user = create(:user, id: 50, name: "Bubbles", email: "bubbles@sunnyvale.ca", password: "password")
         visit "/users/#{user.id}/movies/550"
         within("#buttons") do
           within("#new_party_button") do
