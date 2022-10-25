@@ -17,8 +17,11 @@ RSpec.describe 'the User Registration Page' do
   describe 'creating a new user' do
     context 'given valid data' do
       it 'can create a new user' do
+        
         fill_in "Name", with: "Ricky"
         fill_in "Email", with: "ricky@sunnyvale.ca"
+        fill_in "Password", with: "Password"
+        fill_in "Password Confirmation", with: "Password"
         
         expect { click_on 'Register' }.to change { User.count }.by(1)
         user = User.last
@@ -43,12 +46,17 @@ RSpec.describe 'the User Registration Page' do
       it 'redirects to the registration page with error message on how to fix the error' do
         fill_in "Name", with: "Ricky"
         fill_in "Email", with: "ricky@sunnyvale.ca"
+        fill_in "Password", with: "Password"
+        fill_in "Password Confirmation", with: "Password"
+        
         click_on "Register"
 
         visit "/register"
 
         fill_in "Name", with: "Ricky"
         fill_in "Email", with: "ricky@sunnyvale.ca"
+        fill_in "Password", with: "Password"
+        fill_in "Password Confirmation", with: "Password"
 
         expect { click_on 'Register' }.to change { User.count }.by(0)
         expect(page).to have_content("Email has already been taken")
