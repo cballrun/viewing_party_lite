@@ -19,17 +19,16 @@ class UsersController < ApplicationController
     # render :login_form=
   end
 
+
   def login
-    def login
-      user = User.find_by(name: params[:name])
-      if user.authenticate(params[:password])
-        session[:user_id] = user.id
-        flash[:success] = "Welcome, #{user.name}!"
-        redirect_to root_path
-      else
-        flash[:error] = "Sorry, your credentials are bad."
-        render :login_form
-      end
+    user = User.find_by(name: params[:name])
+     if user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "Welcome, #{user.name}!"
+      redirect_to root_path
+    else
+      flash[:error] = "Sorry, your credentials are bad."
+      render :login_form
     end
   end
   
